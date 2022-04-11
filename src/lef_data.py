@@ -751,10 +751,146 @@ class LefLayerType(Enum):
 
 class LefLayer(LefStatement):
     def __init__(self,name, layerType: LefLayerType):
-        self.type = LefStatementType.LAYER
-        self.layerType = layerType
+        self.type = layerType
         self.name = name
-        #TODO
+    def __str__(self):
+        return "{} {}".format(self.type.name, self.name)
+
+class LefLayerCut(LefLayer):
+    def __init__(self, name):
+        """_summary_
+        Class constructor.
+        Args:
+            name (str): name of the layer 
+        """
+        super().__init__(name, LefLayerType.CUT)
+        self.mask = None
+        self.spacing = []
+        self.spacingTable = None
+        self.arraySpacing = None
+        self.width = None
+        self.enclosure = []
+        self.preferEnclosure = []
+        self.resistance = None
+        self.property = {}
+        self.acCurrentDensity = None
+        self.dcCurrentDensity = None
+        self.antennaModel = []
+        self.antennaAreaRatio = []
+        self.antennaDiffAreaRatio = []
+        self.antennaCumAreaRatio = []
+        self.antennaCumDiffAreaRatio = []
+        self.antennaAreaFactor = []
+        self.antennaCumRoutingPlusCut = False
+        self.antennaGatePlusDiff = None
+        self.antennaAreaMinusDiff = None
+        self.antennaAreaDiffReducePWL = None
+    
+    def __str__(self):
+        """_summary_
+        The class object string description.
+        Args:
+            self (LefLayerCut): class object
+        Returns:
+            str: class object string description
+        """
+        ret = super().__str__() + "\n"
+        # build the string body
+        if self.mask is not None:
+            ret += "MASK {} ;\n".format(self.mask)
+        for spacing in self.spacing:
+            ret += "\t{}\n".format(str(spacing))
+        if self.spacingTable is not None:
+            ret += "\t{} ;\n".format(str(self.spacingTable))
+        if self.arraySpacing is not None:
+            ret += "\t{} ;\n".format(str(self.arraySpacing))
+        if self.width is not None:
+            ret += "\tWIDTH {} ;\n".format(str(self.width))
+        for enclosure in self.enclosure:
+            ret += "\t{}\n".format(str(enclosure))
+        for preferEnclosure in self.preferEnclosure:
+            ret += "\t{}\n".format(str(preferEnclosure))
+        if self.resistance is not None:
+            ret += "\tRESISTANCE {} ;\n".format(str(self.resistance))
+        for prop in self.property.values():
+            ret += "\t{} ;\n".format(str(prop))
+        if self.acCurrentDensity is not None:
+            ret += "\t{}\n".format(str(self.acCurrentDensity))
+        if self.dcCurrentDensity is not None:
+            ret += "\t{}\n".format(str(self.dcCurrentDensity))
+        for antennaModel in self.antennaModel:
+            ret += "\t{}\n".format(str(antennaModel))
+        for antennaAreaRatio in self.antennaAreaRatio:
+            ret += "\t{}\n".format(str(antennaAreaRatio))
+        for antennaDiffAreaRatio in self.antennaDiffAreaRatio:
+            ret += "\t{}\n".format(str(antennaDiffAreaRatio))
+        for antennaCumAreaRatio in self.antennaCumAreaRatio:
+            ret += "\t{}\n".format(str(antennaCumAreaRatio))
+        for antennaCumDiffAreaRatio in self.antennaCumDiffAreaRatio:
+            ret += "\t{}\n".format(str(antennaCumDiffAreaRatio))
+        for antennaAreaFactor in self.antennaAreaFactor:
+            ret += "\t{}\n".format(str(antennaAreaFactor))
+        if self.antennaCumRoutingPlusCut:
+            ret += "\tANTENNACUMROUTINGPLUSCUT ;\n"
+        if self.antennaGatePlusDiff is not None:
+            ret += "\t{}\n".format(str(self.antennaGatePlusDiff))
+        if self.antennaAreaMinusDiff is not None:
+            ret += "\t{}\n".format(str(self.antennaAreaMinusDiff))
+        if self.antennaAreaDiffReducePWL is not None:
+            ret += "\t{}\n".format(str(self.antennaAreaDiffReducePWL))
+        ret += "END {}\n".format(self.name)
+        return ret
+    
+    def parseData(self, data): # TODO : add the parsing of the data
+        raise NotImplementedError("LefLayerCut: parseData not implemented")
+    
+    
+class LefLayerRouting(LefLayer): # TODO : implement
+    """_summary_
+    A LEF LAYER of TYPE ROUTING statement.
+    Args:
+        LefLayer (_type_): _description_
+    """
+    def __init__(self):
+        raise NotImplementedError("LefLayerRouting: not implemented")
+    
+class LefVia(LefStatement): # TODO : implement
+    """_summary_
+    A LEF VIA (DEFAULT) statement.
+    Args:
+        LefLayer (_type_): _description_
+    """
+    def __init__(self):
+        raise NotImplementedError("LefVia: not implemented")
+
+class LefViaRule(LefStatement): # TODO : implement
+    """_summary_
+    A LEF VIARULE statement, of type GENERATE or not.
+    Args:
+        LefLayer (_type_): _description_
+    """
+    def __init__(self):
+        raise NotImplementedError("LefViaRule: not implemented")
+
+class LefUnits(LefStatement): # TODO : implement
+    """_summary_
+    An LEF LIBRARY UNITS statement.
+    Args:
+        LefStatement (_type_): _description_
+    """
+    def __init__(self):
+        raise NotImplementedError("LefUnits: not implemented")
+    
+class LefLibrary(LefStatement): # TODO : implement
+    """_summary_
+    an LEF LIBRARY data structure holding all the info regarding
+    a technology node declared inside the ".lef" or ".tlef" file.
+    Args:
+        LefStatement (_type_): _description_
+    """
+    def __init__(self):
+        raise NotImplementedError("LefLibrary: not implemented")
+    
 
 #   TODO: IMPLEMENT LEF/TLEF LIBRARY MODULE
 #   TODO: IMPLEMENT LEF_WRITE FILE
