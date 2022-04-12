@@ -9,7 +9,7 @@ import numpy as np
 from enum import Enum # import enum to create enumerations
 from importlib.metadata import PathDistribution
 from pickletools import uint8
-from util import *
+from deflefpy.util import *
 
 class LefCoverClass(Enum):
     """_summary_
