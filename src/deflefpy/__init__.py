@@ -2,7 +2,7 @@
 deflefpy is a DEF-LEF file parser for Python, written in Python.
 """
 
-__version__ = '0.1.0'
+__version__ = '0.1.1'
 __author__  = 'Diogo André Silvares Dias'
 __email__   = 'das.dias@campus.fct.unl.pt'
 
@@ -10,13 +10,13 @@ from loguru import logger
 import os
 import warnings
 
-from src.deflefpy.util import (
+from deflefpy.util import (
     Unsupported,
     LefDecimal,
     LefPoint,
     LefPort,
 )
-from src.deflefpy.lef_data import (
+from deflefpy.lef_data import (
     LefLibrary, 
     LefUnits, 
     LefVia, 
@@ -25,10 +25,10 @@ from src.deflefpy.lef_data import (
     LefLayerRouting,
     LefPin,
 )
-from src.deflefpy.lef_read import *
-from src.deflefpy.lef_write import *
+from deflefpy.lef_read import *
+from deflefpy.lef_write import *
 
-print("deflef_py, Version 0.1.0")
+print("deflefpy, version {}".format(__version__))
 logger.info("Project File: {}".format(os.path.abspath(__file__)))
 
 warnings.warn(
