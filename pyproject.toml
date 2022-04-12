@@ -4,7 +4,7 @@ version = "0.1.0"
 description = "A DEF/LEF (Library Exchange Format) file parser written in Python."
 authors = ["dasdias <das.dias6@gmail.com>"]
 license = "MIT"
-repository = "https://github.com/das-dias/deflef_py"
+repository = "https://github.com/das-dias/deflefpy"
 
 [tool.poetry.dependencies]
 python = "^3.9"
