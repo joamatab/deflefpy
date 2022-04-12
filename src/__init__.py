@@ -1,5 +1,5 @@
 """
-deflef_py is a DEF-LEF file parser for Python, written in Python.
+deflefpy is a DEF-LEF file parser for Python, written in Python.
 """
 
 __version__ = '0.1.0'
@@ -26,7 +26,7 @@ from src.lef_read import *
 from src.lef_write import *
 
 warnings.warn(
-    "[DELFEF] DEF data parsing is not yet supported.",
+    "[DELFEF] DEF (Design Exchange Format) parsing is not yet supported.",
     category = Unsupported,
     stacklevel = 1
 )
