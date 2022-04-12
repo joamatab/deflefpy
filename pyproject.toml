@@ -10,7 +10,7 @@ repository = "https://github.com/das-dias/deflef_py"
 python = "^3.9"
 loguru = "^0.6.0"
 numpy = "^1.22.3"
-pickle = "^5.0.0"
+
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"
@@ -19,4 +19,6 @@ pytest = "^5.2"
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
 
-[lib]
+[packages]
+include = "**/*.py"
+
