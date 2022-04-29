@@ -223,7 +223,7 @@ class LefForeign(LefStatement):
         Args:
             object (LefForeign): statement object
         """
-        return "LefForeign: {} {} {} {} {}".format(self.type.name, self.name, self.foreignCellName, self.offset, self.orient)
+        return f"LefForeign: {self.type.name} {self.name} {self.foreignCellName} {self.offset} {self.orient}"
 
 class LefSize(LefStatement):
     """_summary_
@@ -249,7 +249,7 @@ class LefSize(LefStatement):
         Args:
             object (LefSize): LefSize object
         """
-        return "SIZE {} BY {}".format(self.width, self.height)
+        return f"SIZE {self.width} BY {self.height}"
 
 class LefSitePattern(LefStatement):
     """_summary_
@@ -279,7 +279,7 @@ class LefSitePattern(LefStatement):
         Args:
             object (LefSitePattern): LefSitePattern object
         """
-        return "{} {} {}".format(self.origin, self.siteOrient.name, self.stepPattern)
+        return f"{self.origin} {self.siteOrient.name} {self.stepPattern}"
 
 class LefRowpattern(LefStatement):
     """_summary_
@@ -300,7 +300,7 @@ class LefRowpattern(LefStatement):
         self.prevSiteName = prevSiteName
         self.prevSiteOrient = prevSiteOrient
     def __str__(self):
-        return "ROWPATTERN {} {}".format(self.prevSiteName, self.prevSiteOrient.name)
+        return f"ROWPATTERN {self.prevSiteName} {self.prevSiteOrient.name}"
 
 class LefSite(LefStatement):
     """_summary_
@@ -362,8 +362,8 @@ class LefSite(LefStatement):
             if type(value) != LefSize:
                 raise TypeError("LefSite: SIZE needs to be LefSize object")
             self.size = value
-        else :
-            raise TypeError("LefSite: {} is not a valid statement".format(statement))
+        else:
+            raise TypeError(f"LefSite: {statement} is not a valid statement")
 
 
 class LefProperty(LefStatement):
@@ -387,7 +387,7 @@ class LefProperty(LefStatement):
             raise TypeError("LefProperty: value must be str or LefDecimal")
         self.value = value      
     def __str__(self):
-        return "PROPERTY {} {}".format(self.name, self.value)
+        return f"PROPERTY {self.name} {self.value}"
 
 
 
@@ -440,7 +440,7 @@ class LefPin(LefStatement):
         Returns:
             ret (str): str representation
         """
-        ret = "PIN {}".format(self.name)
+        ret = f"PIN {self.name}"
         if self.taperRule != "":
             ret += "\tTAPERRULE {} ;\n".format(self.taperRule)
         if self.direction != None:
@@ -540,8 +540,7 @@ class LefPin(LefStatement):
             if type(value) != str:
                 raise TypeError("LefPin: PROPERTY_LEF58_VIAINPINONLY value must be a str with the Pin Name")
             self.propertyLef58ViaInPinOnly = value
-            
-        # Antenna fields
+
         elif statement == "ANTENNAPARTIALMETALAREA":
             if type(value) != LefAntennaField:
                 raise TypeError("LefPin: ANTENNAPARTIALMETALAREA value must be a LefAntennaField statement")
@@ -597,7 +596,7 @@ class LefPin(LefStatement):
                 raise TypeError("LefPin: ANTENNAMAXCUTCAR statement value must be of type ANTENNAMAXCUTCAR")
             self.antennaMaxCutCar.append(value)
         else:
-            raise TypeError("LefPin: Unknown statement: " + statement)
+            raise TypeError(f"LefPin: Unknown statement: {statement}")
 
 class LefObs(LefStatement):
     """_summary_
@@ -733,7 +732,7 @@ class LefMacro(LefStatement):
                 raise TypeError("LefMacro: PROPERTY needs to be LefProperty object")
             self.properties[value.name] = value
         else:
-            raise TypeError("LefMacro: {} is not a valid statement".format(statement))
+            raise TypeError(f"LefMacro: {statement} is not a valid statement")
      
 class LefLayerType(Enum):
     """
@@ -754,7 +753,7 @@ class LefLayer(LefStatement):
         self.type = layerType
         self.name = name
     def __str__(self):
-        return "{} {}".format(self.type.name, self.name)
+        return f"{self.type.name} {self.name}"
 
 class LefLayerCut(LefLayer):
     def __init__(self, name):
