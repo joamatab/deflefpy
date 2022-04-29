@@ -10,5 +10,5 @@ import pickle
 
 def test():
     feat = Unsupported("LEF Write")
-    logger.info("{}".format(str(feat)))
-    logger.info("Project File: {}".format(os.path.abspath(__file__)))
+    logger.info(f"{str(feat)}")
+    logger.info(f"Project File: {os.path.abspath(__file__)}")
